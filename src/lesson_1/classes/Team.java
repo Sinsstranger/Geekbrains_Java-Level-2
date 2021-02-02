@@ -1,25 +1,38 @@
 package lesson_1.classes;
 
 public class Team {
-	public String name;
-	public Sportsman[] sportsmen;
+	private String name;
 
-	public Team(String name, Sportsman[] sportsmen) {
-		this.name = name;
-		this.sportsmen = sportsmen;
+	public Participant[] getParticipants() {
+		return participants;
 	}
 
-	public void showWinners() {
-		for (Sportsman sportsman : sportsmen) {
-			if (sportsman.isWinner) {
-				System.out.printf("####################%nИмя: %16s%nИнформация:%n%s####################", sportsman.name, sportsman.info);
-			}
+	private Participant[] participants;
+
+	public Team(String name, Participant... participants) {
+		this.name = name;
+		this.participants = participants;
+	}
+
+	public void showAllParticipants() {
+		System.out.println("Комманда: " + this.name);
+		for (Participant participant : this.participants) {
+			System.out.println("##########\n" +
+					  "Имя: " + participant.name + "\n" +
+					  "Информация: " + participant.info
+			);
 		}
 	}
 
-	public void showSportsmen() {
-		for (Sportsman sportsman : sportsmen) {
-			System.out.printf("####################%nИмя: %16s%nИнформация:%n%s", sportsman.name, sportsman.info);
+	public void showPassedParticipants() {
+		System.out.println("Комманда: " + this.name);
+		for (Participant participant : this.participants) {
+			if (participant.isPassed) {
+				System.out.println("##########\n" +
+						  "Имя: " + participant.name + "\n" +
+						  "Информация: " + participant.info
+				);
+			}
 		}
 	}
 }

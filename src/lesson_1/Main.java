@@ -1,19 +1,23 @@
 package lesson_1;
 
-import lesson_1.classes.Course;
-import lesson_1.classes.Sportsman;
+import lesson_1.classes.Participant;
 import lesson_1.classes.Team;
+import lesson_1.classes.courses.RunningRoad;
+import lesson_1.classes.courses.SwimmingPool;
+import lesson_1.interfaces.Course;
 
 public class Main {
 	public static void main(String[] args) {
-		Team team = new Team("Stars", new Sportsman[]{
-				  new Sportsman("Dave", 12, 500, 1000),
-				  new Sportsman("Sol", 10, 440, 1000),
-				  new Sportsman("Sam", 12, 500, 900),
-				  new Sportsman("John", 11, 500, 1000)});
-		Course course = new Course();
-		course.doIt(team);
-		team.showWinners();
-//		team.showSportsmen(); // - все спортсмены
+		Team team = new Team(
+				  "Lazy Boys",
+				  new Participant("Mikle", 1000, 50),
+				  new Participant("Sam", 100, 49)
+		);
+		Course[] courses = {new RunningRoad(), new SwimmingPool()};
+		for (Course course : courses) {
+			course.doIt(team);
+		}
+//		team.showPassedParticipants();
+		team.showAllParticipants();
 	}
 }
