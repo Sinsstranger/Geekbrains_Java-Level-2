@@ -5,7 +5,7 @@ import lesson_2.classes.MyArraySizeException;
 
 public class Main {
 
-	public static void arrCorrectLengthCheck(int requreOutSize, int requireInSize, String[][] strings) throws MyArraySizeException {
+	public static void arrCorrectLengthCheck(int requreOutSize, int requireInSize, String[][] strings) throws MyArraySizeException, MyArrayDataException {
 		if (strings.length > requreOutSize) {
 			throw new MyArraySizeException("Превышен размер массива!");
 		} else {
@@ -20,7 +20,7 @@ public class Main {
 		try {
 			arrSummator(strings);
 		} catch (MyArrayDataException e) {
-			System.out.println(e.getMessage());
+			throw e;
 		}
 	}
 
@@ -30,7 +30,7 @@ public class Main {
 			for (int j = 0; j < strings[i].length; j++) {
 				try {
 					result += Integer.parseInt(strings[i][j]);
-				} catch (Exception e) {
+				} catch (NumberFormatException e) {
 					throw new MyArrayDataException("В массиве на позиции " + i + ":" + j + " не удалось преобразование к числу;", e);
 				}
 			}
@@ -38,7 +38,7 @@ public class Main {
 		System.out.println("Результат рекурсивного сложения массива: " + result + ";");
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
 		String[][] strings = {
 				  {"1", "2", "3", "4"},
 				  {"4", "3", "2", "1"},
@@ -47,8 +47,8 @@ public class Main {
 		};
 		try {
 			arrCorrectLengthCheck(4, 4, strings);
-		} catch (MyArraySizeException e) {
-			System.out.println(e.getMessage());
+		} catch (MyArraySizeException | MyArrayDataException e) {
+			throw e;
 		}
 	}
 }
