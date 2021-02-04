@@ -31,7 +31,7 @@ public class Main {
 				try {
 					result += Integer.parseInt(strings[i][j]);
 				} catch (Exception e) {
-					throw new MyArrayDataException("В массиве на позиции " + i + ":" + j + " не удалось преобразование к числу;");
+					throw new MyArrayDataException("В массиве на позиции " + i + ":" + j + " не удалось преобразование к числу;", e);
 				}
 			}
 		}
